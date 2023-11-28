@@ -1,12 +1,15 @@
 /* eslint-disable indent */
 const modals = (state) => {
-	function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
+    let btnPressed = false;
+
+	function bindModal(triggerSelector, modalSelector, closeSelector, destroy = false) {
         const trigger = document.querySelectorAll(triggerSelector),
               modal =  document.querySelector(modalSelector),
               close = document.querySelector(closeSelector),
               windows = document.querySelectorAll('[data-modal]'),
               form = document.querySelectorAll('form'),
-              scroll = calcScroll();
+              scroll = calcScroll(),
+              gift = document.querySelector('.fixed-gift');
 
 		trigger.forEach(item => {
             item.addEventListener('click', (e) => {
@@ -14,10 +17,17 @@ const modals = (state) => {
                     e.preventDefault();
                 }
 
+                btnPressed = true;
+
+                if (destroy) {
+                    item.remove();
+                }
+
                 windows.forEach(item => {
                     item.style.display = 'none';
+                    item.classList.add('animated', 'fadeIn');
                 });
-    
+                gift.style.right = `${scroll + 20}px`;
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
                 document.body.style.marginRight = `${scroll}px`;
@@ -31,36 +41,31 @@ const modals = (state) => {
 
             modal.style.display = 'none';
             document.body.style.overflow = '';
-            // document.body.classList.remove('modal-open');
 
             form.forEach(item => {
                 item.reset();
             });
 
             document.body.style.marginRight = '0px';
-
-            document.querySelector('#width').value = '';
-		    document.querySelector('#height').value = '';
+            gift.style.right = `${20}px`;
         });
 
         modal.addEventListener('click', (e) => {
-            if (e.target === modal && closeClickOverlay) {
+            if (e.target === modal) {
                 windows.forEach(item => {
                     item.style.display = 'none';
                 });
 
+
                 modal.style.display = 'none';
                 document.body.style.overflow = '';
-                // document.body.classList.remove('modal-open');
 
                 form.forEach(item => {
                     item.reset();
                 });
                 
                 document.body.style.marginRight = '0px';
-
-                document.querySelector('#width').value = '';
-		        document.querySelector('#height').value = '';
+                gift.style.right = `${20}px`;
             }
         });
 	}
@@ -78,6 +83,9 @@ const modals = (state) => {
 			if (!display) {
 				document.querySelector(selector).style.display = 'block';
 				document.body.style.overflow = 'hidden';
+                scroll = calcScroll();
+                document.body.style.marginRight = `${scroll}px`;
+                console.log(scroll);
 			}
         }, time);
     }
@@ -96,9 +104,18 @@ const modals = (state) => {
         return scrollWidth;
     }
 
+    function openByScroll(selector) {
+        window.addEventListener('scroll', () => {
+            if (!btnPressed && (window.scrollY + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1)) {
+                document.querySelector(selector).click();
+            }
+        });
+    }
+
     bindModal('.button-design', '.popup-design', '.popup-design .popup-close');
 	bindModal('.button-consultation', '.popup-consultation', '.popup-consultation .popup-close');
-
+    bindModal('.fixed-gift', '.popup-gift', '.popup-gift .popup-close', true);
+    openByScroll('.fixed-gift');
 	showModalByTime('.popup-consultation', 60000);
 };
 
