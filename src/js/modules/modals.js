@@ -11,6 +11,8 @@ const modals = (state) => {
               scroll = calcScroll(),
               gift = document.querySelector('.fixed-gift');
 
+        gift.classList.add('animated', 'headShake');    
+
 		trigger.forEach(item => {
             item.addEventListener('click', (e) => {
                 if(e.target) {
@@ -31,6 +33,7 @@ const modals = (state) => {
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
                 document.body.style.marginRight = `${scroll}px`;
+                gift.classList.remove('animated', 'headShake');  
             });
         });
 
@@ -48,6 +51,7 @@ const modals = (state) => {
 
             document.body.style.marginRight = '0px';
             gift.style.right = `${20}px`;
+            gift.classList.add('animated', 'headShake');    
         });
 
         modal.addEventListener('click', (e) => {
@@ -67,6 +71,7 @@ const modals = (state) => {
                 document.body.style.marginRight = '0px';
                 gift.style.right = `${20}px`;
             }
+            gift.classList.add('animated', 'headShake');    
         });
 	}
 

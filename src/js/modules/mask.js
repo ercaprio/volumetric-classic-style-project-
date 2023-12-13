@@ -15,10 +15,6 @@ const mask = (selector) => {
 		}
 
 		console.log(elem.selectionStart);
-
-		// if (elem.selectionStart === 0 && elem.selectionEnd === 0) {
-		// 	elem.setSelectionRange(pos, pos);
-		// }
 	};
 
 
