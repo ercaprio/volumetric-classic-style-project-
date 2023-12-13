@@ -7,6 +7,15 @@ const checkNumInputs = (selector) => {
 				e.preventDefault();
 			}
 		});
+
+		input.addEventListener('input', () => {
+			if (!/^[а-яА-ЯёЁ0-9]+$/u.test(input.value)) {
+				input.value = '';
+				input.style.boxShadow = '0 0 0 30px white inset';
+			} else {
+				input.style.boxShadow = 'none';
+			}
+		});
 	});
 };
 

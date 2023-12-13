@@ -13,6 +13,12 @@ const mask = (selector) => {
 			range.moveStart('character', pos);
 			range.select();
 		}
+
+		console.log(elem.selectionStart);
+
+		// if (elem.selectionStart === 0 && elem.selectionEnd === 0) {
+		// 	elem.setSelectionRange(pos, pos);
+		// }
 	};
 
 
@@ -37,11 +43,13 @@ const mask = (selector) => {
 		} else {
 			setCursorPosition(this.value.length, this);
 		}
+		
 	}
 
 	let inputs = document.querySelectorAll(selector);
 
 	inputs.forEach(input => {
+		input.addEventListener('click', createMask);
 		input.addEventListener('input', createMask);
 		input.addEventListener('focus', createMask);
 		input.addEventListener('blur', createMask);
