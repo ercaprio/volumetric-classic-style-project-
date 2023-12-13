@@ -62,7 +62,7 @@ const forms = () => {
 			item.classList.add('animated', 'fadeOutUp');
 			setTimeout(() => {
 				item.style.display = 'none';
-			}, 400);
+			}, 300);
 
 			let statusImg = document.createElement('img');
 			statusImg.setAttribute('src', message.spinner);
@@ -97,21 +97,6 @@ const forms = () => {
 						item.classList.add('fadeInUp');
 					}, 3000);
 				});
-
-				
-			// for (let key in state) {
-			// 	if (state.hasOwnProperty(key)) {
-			// 		delete state[key];
-			// 	}
-			// }
-
-			// function closeModalByTime(selector, time) {
-			// 	setTimeout(function() {
-			// 		document.querySelector(selector).style.display = 'none';
-			// 		document.body.style.overflow = '';
-			// 	}, time);
-			// }
-			// closeModalByTime('.popup_calc_end', 3000);
 		});
 	});
 	
