@@ -14,7 +14,6 @@ const mask = (selector) => {
 			range.select();
 		}
 
-		console.log(elem.selectionStart);
 	};
 
 

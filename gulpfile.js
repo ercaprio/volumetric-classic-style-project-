@@ -6,7 +6,7 @@ const webpack = require('webpack-stream');
 const browsersync = require('browser-sync');
 
 // const dist = './dist/';
-const dist = 'c:/OSPanel/domains/test';
+const dist = '/Applications/MAMP/htdocs/volumetric-classic-style_project';
 
 gulp.task('copy-html', () => {
 	return gulp.src('./src/index.html')
