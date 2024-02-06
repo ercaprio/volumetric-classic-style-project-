@@ -68,9 +68,17 @@ const forms = () => {
 			statusMessage.appendChild(textMessage);
 
 			const formData = new FormData(item);
-			let api;
-			item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
 
+			const selects = item.querySelectorAll('select');
+			if (selects) {
+				selects.forEach((select) => {
+					formData.append(select.getAttribute('name'), select.options[select.selectedIndex].text);
+				});
+			}
+
+			let api;
+			// item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
+			api = path.question;
 			postData(api, formData)
 				.then(res => {
 					console.log(res);
@@ -92,7 +100,6 @@ const forms = () => {
 				});
 		});
 	});
-	
 };
 
 export default forms;

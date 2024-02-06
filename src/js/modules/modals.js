@@ -42,9 +42,7 @@ const modals = (state) => {
             upload.forEach(item => {
                 item.previousElementSibling.textContent = 'Файл не выбран';
             });
-        }
 
-        close.addEventListener('click', () => {
             windows.forEach(item => {
                 item.style.display = 'none';
             });
@@ -59,30 +57,16 @@ const modals = (state) => {
             document.body.style.marginRight = '0px';
             gift.style.right = `${20}px`;
             gift.classList.add('animated', 'headShake');  
-            
+        }
+
+        close.addEventListener('click', () => {        
             uploadReset();
         });
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
-                windows.forEach(item => {
-                    item.style.display = 'none';
-                });
-
-
-                modal.style.display = 'none';
-                document.body.style.overflow = '';
-
-                form.forEach(item => {
-                    item.reset();
-                });
-                
-                document.body.style.marginRight = '0px';
-                gift.style.right = `${20}px`;
-            }
-            gift.classList.add('animated', 'headShake');    
-
-            uploadReset();
+                uploadReset();
+            }   
         });
 	}
 
