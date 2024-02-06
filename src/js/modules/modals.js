@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 const modals = (state) => {
-    let btnPressed = false;
+    let btnPressed = false,
+        upload = document.querySelectorAll('[name="upload"]');
 
 	function bindModal(triggerSelector, modalSelector, closeSelector, destroy = false) {
         const trigger = document.querySelectorAll(triggerSelector),
@@ -37,6 +38,12 @@ const modals = (state) => {
             });
         });
 
+        function uploadReset() {
+            upload.forEach(item => {
+                item.previousElementSibling.textContent = 'Файл не выбран';
+            });
+        }
+
         close.addEventListener('click', () => {
             windows.forEach(item => {
                 item.style.display = 'none';
@@ -51,7 +58,9 @@ const modals = (state) => {
 
             document.body.style.marginRight = '0px';
             gift.style.right = `${20}px`;
-            gift.classList.add('animated', 'headShake');    
+            gift.classList.add('animated', 'headShake');  
+            
+            uploadReset();
         });
 
         modal.addEventListener('click', (e) => {
@@ -72,6 +81,8 @@ const modals = (state) => {
                 gift.style.right = `${20}px`;
             }
             gift.classList.add('animated', 'headShake');    
+
+            uploadReset();
         });
 	}
 

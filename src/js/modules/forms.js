@@ -3,7 +3,9 @@ import { postData } from '../services/requests';
 const forms = () => {
 	const form = document.querySelectorAll('form'),
 		inputs = document.querySelectorAll('input'),
-		upload = document.querySelectorAll('[name="upload"]');
+		upload = document.querySelectorAll('[name="upload"]'),
+		textArea = document.querySelectorAll('textarea');
+
 
 	// checkNumInputs('input[name="user_phone"]');
 
@@ -29,11 +31,12 @@ const forms = () => {
 		upload.forEach(item => {
 			item.previousElementSibling.textContent = 'Файл не выбран';
 		});
+
+		textArea.forEach(item => item.value = '');
 	};
 
 	upload.forEach(item => {
 		item.addEventListener('input', () => {
-			console.log(item.files[0]);
 			let dots;
 			const arr = item.files[0].name.split('.');
 			arr[0].length > 6 ? dots = '...' : dots = '.';
