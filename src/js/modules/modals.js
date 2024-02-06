@@ -90,7 +90,6 @@ const modals = (state) => {
 				document.body.style.overflow = 'hidden';
                 scroll = calcScroll();
                 document.body.style.marginRight = `${scroll}px`;
-                console.log(scroll);
 			}
         }, time);
     }

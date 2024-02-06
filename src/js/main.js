@@ -5,6 +5,7 @@ import mask from './modules/mask';
 import checkNumInputs from './modules/checkTextInputs';
 import showMoreStyles from './modules/showMoreStyles';
 import calc from './modules/calc';
+import filter from './modules/filter';
 
 window.addEventListener('DOMContentLoaded', (e) => {
 	'use strict';
@@ -18,4 +19,5 @@ window.addEventListener('DOMContentLoaded', (e) => {
 	checkNumInputs('[name="message"]');
 	showMoreStyles('.button-styles', '#styles .row');
 	calc('#size', '#material', '#options', '.promocode', '.calc-price');
+	filter();
 });
