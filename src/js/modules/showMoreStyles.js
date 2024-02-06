@@ -18,7 +18,13 @@ const showMoreStyles = (trigger, wrapper) => {
 	btn.addEventListener('click', function() {
 		getResource('http://localhost:3000/styles')
 			.then(res => createCards(res))
-			.catch(error => console.log(error));
+			.catch(error => {
+				let errorDiv = document.createElement('div');
+				errorDiv.textContent = `Failed to fetch: ${error.name}!`;
+				errorDiv.style.cssText = 'color: red; text-align: center; font-size: 30px; margin-bottom: 20px';
+				document.querySelector(wrapper).append(errorDiv);
+				console.log(error);
+			});
 
 		this.remove();
 	});
