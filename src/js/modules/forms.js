@@ -77,8 +77,8 @@ const forms = () => {
 			}
 
 			let api;
-			// item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
-			api = path.question;
+			item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
+			// api = path.question;
 			postData(api, formData)
 				.then(res => {
 					console.log(res);
