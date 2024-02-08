@@ -3,8 +3,19 @@ const accordion = (triggersSelector) => {
 
 	btns.forEach(btn => {
 		btn.addEventListener('click',  function(){
-			this.classList.toggle('active-style');
-			this.nextElementSibling.classList.toggle('active-content');
+			// this.classList.toggle('active-style');
+			// this.nextElementSibling.classList.toggle('active-content');
+			
+			btns.forEach(cuttentBtn => {
+				if(cuttentBtn === this) {
+					this.classList.toggle('active-style');
+					this.nextElementSibling.classList.toggle('active-content');
+				} else {
+					cuttentBtn.classList.remove('active-style');
+					cuttentBtn.nextElementSibling.classList.remove('active-content');
+					cuttentBtn.nextElementSibling.style.maxHeight = '0px';
+				} 
+			});
 
 			if(this.classList.contains('active-style')) {
 				this.nextElementSibling.style.maxHeight = this.nextElementSibling.scrollHeight + 80 + 'px';
