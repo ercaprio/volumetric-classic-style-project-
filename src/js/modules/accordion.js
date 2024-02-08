@@ -3,9 +3,6 @@ const accordion = (triggersSelector) => {
 
 	btns.forEach(btn => {
 		btn.addEventListener('click',  function(){
-			// this.classList.toggle('active-style');
-			// this.nextElementSibling.classList.toggle('active-content');
-			
 			btns.forEach(cuttentBtn => {
 				if(cuttentBtn === this) {
 					this.classList.toggle('active-style');
